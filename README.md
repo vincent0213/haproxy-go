@@ -1,7 +1,8 @@
 # haproxy-go
 haproxy-go is a free, very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and UDP applications.
 
-configs.json
+# Set configs.json like below
+```json
 [
   {
     "inport": 8080,
@@ -19,3 +20,4 @@ configs.json
     "server": "1.1.1.1"
   }
 ]
+```
