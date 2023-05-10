@@ -1,0 +1,17 @@
+[
+  {
+    "inport": 8080,
+    "outport": 8080,
+    "server": "1.1.1.1"
+  },
+  {
+    "inport": 8081,
+    "outport": 8081,
+    "server": "1.1.1.1"
+  },
+  {
+    "inport": 8082,
+    "outport": 8082,
+    "server": "1.1.1.1"
+  }
+]
