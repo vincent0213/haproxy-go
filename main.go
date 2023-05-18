@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -20,14 +19,17 @@ type Config struct {
 func main() {
 	var path string
 	for idx, args := range os.Args {
+		fmt.Println("parameters: "+strconv.Itoa(idx)+":", args)
 		if strings.Contains("./configs.json", "./configs.json") {
 			path = args
+		} else {
+			log.Println("not found configs.json")
+			return
 		}
-		fmt.Println("参数"+strconv.Itoa(idx)+":", args)
 	}
 
 	//ReadFile函数会读取文件的全部内容，并将结果以[]byte类型返回
-	data, err := ioutil.ReadFile(path)
+	data, err := os.ReadFile(path)
 	if err != nil {
 		return
 	}
@@ -35,7 +37,7 @@ func main() {
 
 	//读取的数据为json格式，需要进行解码
 	var configs []Config
-	err = json.Unmarshal([]byte(data), &configs)
+	err = json.Unmarshal(data, &configs)
 	if err != nil {
 		log.Println(err)
 		return
@@ -49,15 +51,4 @@ func main() {
 	for {
 		time.Sleep(10 * time.Second)
 	}
-
-	//flag.StringVar(&flags.Server1, "s", "18.179.166.28", "client connect address or url")
-	//flag.Parse()
-	//
-	//go udpLocal(13531, flags.Server1, 13531)
-	//go udpLocal(13532, flags.Server2, 13532)
-	//go udpLocal(13533, flags.Server3, 13533)
-	//go tcpForward(flags.Server, ":13531")
-	//go tcpForward(flags.Server, ":13532")
-	//tcpForward(flags.Server, ":13533")
-
 }
