@@ -1,6 +1,6 @@
 // Implementation of a UDP proxy
 
-package main
+package haproxy
 
 import (
 	"fmt"
@@ -147,7 +147,7 @@ func checkreport2(level int, err error) int {
 	return 1
 }
 
-func udpLocal(localPort int, serverAddr string, serverPort int) {
+func UdpForward(localPort int, serverAddr string, serverPort int) {
 	hostport := fmt.Sprintf("%s:%d", serverAddr, serverPort)
 	Vlogf(3, "UDP Proxy port = %d, Server address = %s\n", localPort, hostport)
 	setup(hostport, localPort)

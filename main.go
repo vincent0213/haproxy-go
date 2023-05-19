@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"haproxy-go/haproxy"
 	"log"
 	"os"
 	"strconv"
@@ -44,8 +45,8 @@ func main() {
 	}
 	for _, config := range configs {
 		log.Println(config.Server)
-		go udpLocal(config.InPort, config.Server, config.OutPort)
-		go tcpForward(config.Server, ":"+strconv.Itoa(config.InPort), ":"+strconv.Itoa(config.OutPort))
+		go haproxy.UdpForward(config.InPort, config.Server, config.OutPort)
+		go haproxy.TcpForward(config.Server, ":"+strconv.Itoa(config.InPort), ":"+strconv.Itoa(config.OutPort))
 	}
 
 	for {

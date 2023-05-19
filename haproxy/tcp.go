@@ -1,4 +1,4 @@
-package main
+package haproxy
 
 import (
 	"errors"
@@ -14,7 +14,7 @@ import (
 // Bucket adding 100KB every second, holding max 100KB
 var bucket = ratelimit.NewBucketWithRate(200*1024, 200*1024)
 
-func tcpForward(server string, inPort string, outPort string) {
+func TcpForward(server string, inPort string, outPort string) {
 	l, err := net.Listen("tcp", inPort)
 	if err != nil {
 		log.Panic(err)
