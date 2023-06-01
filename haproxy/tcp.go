@@ -18,6 +18,7 @@ func TcpForward(server string, inPort string, outPort string) {
 	l, err := net.Listen("tcp", inPort)
 	if err != nil {
 		log.Panic(err)
+		return
 	}
 	log.Println("TCP listen " + inPort)
 	// 死循环，每当遇到连接时，调用handle
